@@ -1,13 +1,13 @@
 const container = document.querySelector('.container');
-const search = document.querySelector('.search-box button');
-const weatherBox = document.querySelector('.weather-box');
+const search = document.querySelector('.search-tab button');
+const weatherCard = document.querySelector('.weather-card');
 const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
 
 search.addEventListener('click', () => {
 
-    const APIKey = '4aec78f7d391b2a830826ed6c2ca2f87';
-    const city = document.querySelector('.search-box input').value;
+    const APIKey = '';
+    const city = document.querySelector('.search-tab input').value;
 
     if (city === '')
         return;
@@ -18,7 +18,7 @@ search.addEventListener('click', () => {
 
             if (json.cod === '404') {
                 container.style.height = '400px';
-                weatherBox.style.display = 'none';
+                weatherCard.style.display = 'none';
                 weatherDetails.style.display = 'none';
                 error404.style.display = 'block';
                 error404.classList.add('fadeIn');
@@ -28,9 +28,9 @@ search.addEventListener('click', () => {
             error404.style.display = 'none';
             error404.classList.remove('fadeIn');
 
-            const image = document.querySelector('.weather-box img');
-            const temperature = document.querySelector('.weather-box .temperature');
-            const description = document.querySelector('.weather-box .description');
+            const image = document.querySelector('.weather-card img');
+            const temperature = document.querySelector('.weather-card .temperature');
+            const description = document.querySelector('.weather-card .description');
             const humidity = document.querySelector('.weather-details .humidity span');
             const wind = document.querySelector('.weather-details .wind span');
 
@@ -64,14 +64,12 @@ search.addEventListener('click', () => {
             humidity.innerHTML = `${json.main.humidity}%`;
             wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
 
-            weatherBox.style.display = '';
+            weatherCard.style.display = '';
             weatherDetails.style.display = '';
-            weatherBox.classList.add('fadeIn');
+            weatherCard.classList.add('fadeIn');
             weatherDetails.classList.add('fadeIn');
             container.style.height = '590px';
 
 
         });
-
-
 });
